@@ -1,1 +1,0 @@
-# React_TypeScript_Webpack_Firebase_Starter
