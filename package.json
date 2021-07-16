@@ -7,7 +7,7 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "precommit": "lint-staged",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "dev": "webpack-cli serve --mode development --config webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "type-check": "tsc --noEmit",
     "watch": "webpack --watch"

@@ -27,7 +27,7 @@ module.exports = merge(common, {
     contentBase: './dist',
     inline: true,
     host: 'localhost',
-    port: 8080,
+    port: 8081,
     stats: 'errors-only',
     historyApiFallback: true,
   },
