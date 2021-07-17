@@ -6,18 +6,21 @@ import {
   Route,
   Link,
   useRouteMatch,
-  // useParams,
+  useParams,
 } from 'react-router-dom';
-import {
-  AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Box, Button, Flex,
-} from '@chakra-ui/react';
+import { NovelIndexPage } from './view/pages/novel/Index';
+import { AboutPage } from './view/pages/About';
+import { HomePage } from './view/pages/Home';
 
-function Home() {
-  return <h2>Home</h2>;
-}
+function Topic() {
+  const params = useParams<{topicId: string}>();
 
-function About() {
-  return <h2>About</h2>;
+  return (
+    <h3>
+      Requested topic ID:
+      {params.topicId}
+    </h3>
+  );
 }
 
 function Topics() {
@@ -42,27 +45,17 @@ function Topics() {
           that build on the /topics URL path. You can think of the
           2nd <Route> here as an "index" page for all topics, or
           the page that is shown when no topic is selected */}
-      {/* <Switch>
+      <Switch>
         <Route path={`${match.path}/:topicId`}>
           <Topic />
         </Route>
         <Route path={match.path}>
           <h3>Please select a topic.</h3>
         </Route>
-      </Switch> */}
+      </Switch>
     </div>
   );
 }
-
-// function Topic() {
-//   const { topicId } = useParams();
-//   return (
-//     <h3>
-//       Requested topic ID:
-//       {topicId}
-//     </h3>
-//   );
-// }
 
 export default function App() {
   useEffect(() => {
@@ -78,6 +71,9 @@ export default function App() {
       <div>
         <ul>
           <li>
+            <Link to="/novels">Novels</Link>
+          </li>
+          <li>
             <Link to="/">Home</Link>
           </li>
           <li>
@@ -88,33 +84,18 @@ export default function App() {
           </li>
         </ul>
 
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          Box with Flex props
-        </Box>
-        <Flex align="center" justify="center">
-          Flex Container
-        </Flex>
-        <AlertDialog isOpen onClose={() => {}} leastDestructiveRef={undefined}>
-          <AlertDialogOverlay>
-            <AlertDialogContent>
-              <AlertDialogHeader>ダイアログ</AlertDialogHeader>
-              <AlertDialogBody>ダイアログの本文で〜〜〜す！</AlertDialogBody>
-              <AlertDialogFooter>
-                <Button>閉じる</Button>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialogOverlay>
-        </AlertDialog>
-
         <Switch>
+          <Route path="/novels">
+            <NovelIndexPage />
+          </Route>
           <Route path="/about">
-            <About />
+            <AboutPage />
           </Route>
           <Route path="/topics">
             <Topics />
           </Route>
           <Route path="/">
-            <Home />
+            <HomePage />
           </Route>
         </Switch>
       </div>

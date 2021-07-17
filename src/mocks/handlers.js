@@ -1,6 +1,8 @@
 // src/mocks/handlers.js
 import { rest } from 'msw';
 
+const novels = [...Array(20)].map((_, index) => ({ id: `00${index}`, title: `sample 00${index}` }));
+
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
     const { username } = req.body;
@@ -14,6 +16,10 @@ export const handlers = [
       }),
     );
   }),
+
+  rest.get('/novels', (req, res, ctx) => res(
+    ctx.json(novels),
+  )),
 
   rest.get('/users/1', (req, res, ctx) => res(
     ctx.json({
